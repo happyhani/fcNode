@@ -2,8 +2,10 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser'); // 客户端会话
 var bodyParser = require('body-parser');
+var session = require('express-session'); // 服务端会话   Session是有状态的，而HTTP协议是无状态的
+// express-session中间件将会话数据存储在服务器上；它仅将会话标识（而非会话数据）保存在 cookie 中。
 
 var index = require('./routes/index');
 var users = require('./routes/users');
