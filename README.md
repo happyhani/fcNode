@@ -2,7 +2,7 @@
 
 > 0801_02翡翠学院后台服务器搭建
 ### 1 编写操作数据库模块和录入管理员的权限
-* dbhandler.js
+* 文件dbhandler.js
 * node 操作 MongoDB 数据库时编写的代码，在这里我们主要修改了数据库操作方法类别对象 methodType 中的 key 值和 value 值。
 * key 值根据接口的 aciton 属性设置，value 值根据相应 key 值的功能设置。
 * 数据存储到的数据库为：administor

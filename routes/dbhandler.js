@@ -1,7 +1,7 @@
-var mongo=require("mongodb");               //@3.0.1
-var assert = require('assert');             //做验证的模块    assert 模块用来做断言，如果表达式不符合预期，就抛出一个错误；
-var MongoClient = mongo.MongoClient;        //创建 mongodb 的客户端
-var Urls = 'mongodb://localhost:27017/administor';//客户端的地址
+var mongo=require("mongodb");               // @3.0.1
+var assert = require('assert');             // 做验证的模块    assert 模块用来做断言，如果表达式不符合预期，就抛出一个错误；
+var MongoClient = mongo.MongoClient;        // 创建 mongodb 的客户端
+var Urls = 'mongodb://localhost:27017/administor';// 客户端的地址
 
 /*  
  * 配置操作数据库的主要方法:
@@ -82,13 +82,14 @@ var methodType = {
 @param {function} [fn] 回调函数
 */
 module.exports = function(req,res,collections,selector,fn){
- MongoClient.connect(Urls, function(err, db) {                //客户端链接数据库
- assert.equal(null, err);                                     //做校验，判断 err 是否为一个空对象
- console.log("Connected correctly to server");
- //所有执行的主函数
-methodType[req.query.action](db,collections,selector,fn);
- db.close();    //关闭数据库
- });
+  MongoClient.connect(Urls, function(err, db) {                //客户端链接数据库
+    assert.equal(null, err);                                     //做校验，判断 err 是否为一个空对象
+    console.log("Connected correctly to server");
+    
+  //所有执行的主函数
+    methodType[req.query.action](db,collections,selector,fn);
+    db.close();    //关闭数据库
+  });
 };
 
 /*
