@@ -9,8 +9,8 @@ var Urls = 'mongodb://localhost:27017/administor';// 客户端的地址
 //add 一条数据
 var add = function(db,collections,selector,fn){
  var collection = db.collection(collections);
- collection.insertMany([selector],function(err,result){
-   assert.equal(err,null);
+ collection.insertMany([selector],function(err,result){  // mongodb: Collection Methods
+   assert.equal(err,null);  // node
    fn(result);
    db.close();
  });
@@ -22,14 +22,14 @@ var deletes = function(db,collections,selector,fn){
    assert.equal(err,null);
    assert.equal(1,result.result.n);
    fn(result);
-   db.close;
+   db.close();
  });
 };
 //find
 var find = function(db,collections,selector,fn){
  var collection = db.collection(collections);
  collection.find(selector).toArray(function(err,docs){
-   assert.equal(err,null);
+   assert.equal(err,null); 
    fn(docs);
    db.close();
  });
@@ -81,13 +81,12 @@ var methodType = {
 @param {json} [selector] 操作的字符串
 @param {function} [fn] 回调函数
 */
-module.exports = function(req,res,collections,selector,fn){
-  MongoClient.connect(Urls, function(err, db) {                //客户端链接数据库
-    assert.equal(null, err);                                     //做校验，判断 err 是否为一个空对象
+module.exports = function(req, res, collections, selector, fn){
+  MongoClient.connect(Urls, function(err, db) {               //客户端链接数据库
+    assert.equal(null, err);                                  //做校验，判断 err 是否为一个空对象
     console.log("Connected correctly to server");
-    
-  //所有执行的主函数
-    methodType[req.query.action](db,collections,selector,fn);
+    //所有执行的主函数
+    methodType[req.query.action](db, collections, selector, fn);   
     db.close();    //关闭数据库
   });
 };
